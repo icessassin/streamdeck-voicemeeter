@@ -2,6 +2,10 @@
 VoiceMeeter integration and live feedback for the Elgato Stream Deck device.
 
 **Author's website and contact information:** [https://barraider.com](https://barraider.com)
+**Modified by:** Rebel2k
+
+## New in v2.3
+- Added `StripLayer` type support for the `Gain Adjust` action which allows you to control the volume of a a StripLayer from the Dials (like what you can do in the Streamer View of VoiceMeeter).
 
 ## New in v2.2
 - Added `Title` support for Microphone action
