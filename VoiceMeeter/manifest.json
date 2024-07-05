@@ -153,12 +153,12 @@
       "PropertyInspectorPath": "PropertyInspector/VoiceMeeter/AdjustSettingDial.html"
     }
   ],
-  "Author": "BarRaider",
+  "Author": "BarRaider modified by Rebel2k",
   "Description": "VoiceMeeter integration and live feedback. Includes Dials, Hotkey and MIDI Support",
   "Name": "VoiceMeeter Integration",
   "Icon": "Images/pluginIcon",
   "URL": "https://BarRaider.com/",
-  "Version": "2.2",
+  "Version": "2.3",
   "CodePath": "com.barraider.voicemeeter.exe",
   "Category": "VoiceMeeter [BarRaider]",
   "CategoryIcon": "Images/categoryIcon",
