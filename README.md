@@ -2,6 +2,7 @@
 VoiceMeeter integration and live feedback for the Elgato Stream Deck device.
 
 **Author's website and contact information:** [https://barraider.com](https://barraider.com)
+
 **Modified by:** Rebel2k
 
 ## New in v2.3
