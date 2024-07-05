@@ -28,6 +28,7 @@ namespace VoiceMeeter
                 {
                     Strip = StripBusType.Strip,
                     StripNum = 0,
+                    LayerNum = 0,
                     Title = String.Empty
                 };
 
@@ -39,6 +40,9 @@ namespace VoiceMeeter
 
             [JsonProperty(PropertyName = "stripNum")]
             public int StripNum { get; set; }
+
+            [JsonProperty(PropertyName = "layerNum")]
+            public int LayerNum { get; set; }
 
             [JsonProperty(PropertyName = "stepSize")]
             public string StepSize { get; set; }
@@ -212,12 +216,26 @@ namespace VoiceMeeter
 
         private string BuildDeviceName()
         {
-            return $"{settings.Strip}[{settings.StripNum}].gain";
+            if ( settings.Strip.Equals("StripLayer") ) {
+                return $"{settings.Strip}[{settings.StripNum}].gain";
+            }
+            else
+            {
+                return $"Strip[{settings.StripNum}].GainLayer[{settings.LayerNum}]";
+            }
+
         }
 
         private string BuildMuteName()
         {
-            return $"{settings.Strip}[{settings.StripNum}].mute";
+            if (settings.Strip.Equals("StripLayer"))
+            {
+                return $"{settings.Strip}[{settings.StripNum}].mute";
+            }
+            else
+            {
+                return $"not_mutable";
+            }
         }
 
         private Task SaveSettings()
