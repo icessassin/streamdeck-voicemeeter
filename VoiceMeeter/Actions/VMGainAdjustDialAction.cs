@@ -216,25 +216,26 @@ namespace VoiceMeeter
 
         private string BuildDeviceName()
         {
-            if ( settings.Strip.Equals("StripLayer") ) {
-                return $"{settings.Strip}[{settings.StripNum}].gain";
+            if ( $"{settings.Strip}".Equals("2") )
+            {
+                return $"Strip[{settings.StripNum}].GainLayer[{settings.LayerNum}]";
             }
             else
             {
-                return $"Strip[{settings.StripNum}].GainLayer[{settings.LayerNum}]";
+                return $"{settings.Strip}[{settings.StripNum}].gain";
             }
 
         }
 
         private string BuildMuteName()
         {
-            if (settings.Strip.Equals("StripLayer"))
+            if ( $"{settings.Strip}".Equals("2") )
             {
-                return $"{settings.Strip}[{settings.StripNum}].mute";
+                return $"Strip[{settings.StripNum}].mute";
             }
             else
             {
-                return $"not_mutable";
+                return $"{settings.Strip}[{settings.StripNum}].mute";
             }
         }
 
