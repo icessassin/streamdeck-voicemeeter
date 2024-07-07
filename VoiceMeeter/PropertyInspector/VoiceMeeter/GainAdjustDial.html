@@ -11,19 +11,68 @@
 </head>
 <body>
     <script>
-        document.getElementById("strip").addEventListener("change", function () {
-            const stripValue = this.value;
-            updateStripNumState(stripValue);
-        });
 
-        function updateStripNumState(stripValue) {
-            const stripNumField = document.getElementById("layerNum");
-            if (stripValue == 2) {
-                stripNumField.disabled = false;
+        function updateLayerNumState() {
+            var stripValue = document.getElementById('strip').value;
+            var layerNumElement = document.getElementById('layerNum');
+            if (stripValue === '2') {
+                layerNumElement.removeAttribute('disabled');
             } else {
-                stripNumField.disabled = true;
+                layerNumElement.setAttribute('disabled', 'disabled');
             }
         }
+
+        function loadConfiguration(payload) { //needed to override that function from the sdtools.common.js source file to update the layerNum field state on configuration load
+            console.log('loadConfiguration');
+            console.log(payload);
+            for (var key in payload) {
+                try {
+                    var elem = document.getElementById(key);
+                    if (elem.classList.contains("sdCheckbox")) { // Checkbox
+                        elem.checked = payload[key];
+                    }
+                    else if (elem.classList.contains("sdFile")) { // File
+                        var elemFile = document.getElementById(elem.id + "Filename");
+                        elemFile.innerText = payload[key];
+                        if (!elemFile.innerText) {
+                            elemFile.innerText = "No file...";
+                        }
+                    }
+                    else if (elem.classList.contains("sdList")) { // Dynamic dropdown
+                        var textProperty = elem.getAttribute("sdListTextProperty");
+                        var valueProperty = elem.getAttribute("sdListValueProperty");
+                        var valueField = elem.getAttribute("sdValueField");
+
+                        var items = payload[key];
+                        elem.options.length = 0;
+
+                        for (var idx = 0; idx < items.length; idx++) {
+                            var opt = document.createElement('option');
+                            opt.value = items[idx][valueProperty];
+                            opt.text = items[idx][textProperty];
+                            elem.appendChild(opt);
+                        }
+                        elem.value = payload[valueField];
+                    }
+                    else if (elem.classList.contains("sdHTML")) { // HTML element
+                        elem.innerHTML = payload[key];
+                    }
+                    else { // Normal value
+                        elem.value = payload[key];
+                    }
+                    console.log("Load: " + key + "=" + payload[key]);
+                }
+                catch (err) {
+                    console.log("loadConfiguration failed for key: " + key + " - " + err);
+                }
+                updateLayerNumState();
+            }
+        }
+
+        document.getElementById("strip").addEventListener("change", function () {
+            updateLayerNumState();
+        });
+
     </script>
     <div class="sdpi-wrapper">
         <details class="message info">
