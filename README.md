@@ -5,6 +5,12 @@ VoiceMeeter integration and live feedback for the Elgato Stream Deck device.
 
 **Modified by:** Rebel2k
 
+## New in v2.4
+- Added some validation checks so the `LayerNum` field is only available if the `Layer` mode is selected
+- Added a step size of 3 for volume gain
+- Renamed `StripLayer` mode to `Layer`
+- Changed some labels in the UI
+
 ## New in v2.3
 - Added `StripLayer` type support for the `Gain Adjust` action which allows you to control the volume of a a StripLayer from the Dials (like what you can do in the Streamer View of VoiceMeeter).
 
