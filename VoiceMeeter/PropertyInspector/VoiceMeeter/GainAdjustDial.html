@@ -10,16 +10,31 @@
     <script src="https://cdn.jsdelivr.net/gh/barraider/streamdeck-easypi@latest/src/sdtools.common.js"></script>
 </head>
 <body>
+    <script>
+        document.getElementById("strip").addEventListener("change", function () {
+            const stripValue = this.value;
+            updateStripNumState(stripValue);
+        });
+
+        function updateStripNumState(stripValue) {
+            const stripNumField = document.getElementById("layerNum");
+            if (stripValue == 2) {
+                stripNumField.disabled = false;
+            } else {
+                stripNumField.disabled = true;
+            }
+        }
+    </script>
     <div class="sdpi-wrapper">
         <details class="message info">
             <summary>For feedback/suggestions contact me at <span class="linkspan" onclick="openWebsite()">https://BarRaider.com</span> </summary>
         </details>
         <div class="sdpi-item" id="select_single">
-            <div class="sdpi-item-label">Strip/Bus</div>
-            <select class="sdpi-item-value select sdProperty" id="strip" oninput="setSettings()">
+            <div class="sdpi-item-label">Strip/Bus/Layer</div>
+            <select class="sdpi-item-value select sdProperty" id="strip" onchange="updateStripNumState(this.value)" oninput="setSettings()">
                 <option value="0">Strip</option>
                 <option value="1">Bus</option>
-                <option value="2">StripLayer</option>
+                <option value="2">Layer</option>
             </select>
         </div>
         <div class="sdpi-item" id="select_single">
@@ -37,7 +52,7 @@
         </div>
         <div class="sdpi-item" id="select_single">
             <div class="sdpi-item-label">Layer Num</div>
-            <select class="sdpi-item-value select sdProperty" id="layerNum" oninput="setSettings()">
+            <select class="sdpi-item-value select sdProperty" id="layerNum" disabled oninput="setSettings()">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -56,6 +71,7 @@
                 <option value="0.5">0.5</option>
                 <option value="1" selected>1</option>
                 <option value="2">2</option>
+                <option value="3">3</option>
                 <option value="5">5</option>
                 <option value="10">10</option>
             </select>
