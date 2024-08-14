@@ -142,7 +142,7 @@ namespace VoiceMeeter
 
             if (settings.ToggleMode == MacroToggleMode.Toggle)
             {
-                await Connection.ShowOk();
+              //  await Connection.ShowOk();
             }
         }
 
